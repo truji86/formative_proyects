@@ -1,0 +1,142 @@
+import random
+saldo_inicial=int(input("Cuanta plata tenes?:\n $"))
+saldo_parcial=0
+apuesta=int(input("Cuanto vas a apostar:\n $ "))
+ganancia=0
+total=0
+while apuesta>saldo_inicial:
+  apuesta=input("Cuanto vas a apostar:\n $ ")
+  saldo_parcial=saldo_inicial-apuesta
+  opcion_general=input("A que juego queres jugar?:\n 1.Piedra/papel/tijera\n 2.Dados\n 3.Trivia\n 4.Salir\n Elegiste: ")
+  while opcion_general=="1" or opcion_general=="2" or opcion_general=="3":
+        if opcion_general=="1":
+          print("Vas a juagr piedra papel o tijera")
+          human_win=0#contador1
+          machine_win=0#contador2
+          partidas=0
+          while partidas <5 or empate==True:
+            jugada_a=input("Ingresa tu jugada:\n 1.piedra\n 2.papel\n 3.tijera\n")
+            if jugada_a=="1":
+                print("Tu jugada fue piedra")
+            elif jugada_a=="2":
+                print("Tu jugada fue papel")
+            elif jugada_a=="3":
+                print("Tu jugada fue tijera")
+            machine=random.randint(1,3)
+            if machine==1:
+                print("La maquina jugo piedra")
+            elif machine==2:
+              print("La maquina jugo papel")
+            elif machine==3:
+              print("La maquina jugo tijera")
+            print("...")
+            if jugada_a=="1" and machine==3:
+                print("Ganaste")
+                human_win= human_win + 1
+            elif jugada_a=="2" and machine==1:
+                print("Ganaste")
+                human_win=+1
+            elif jugada_a=="3" and machine==2:
+                print("Ganaste")
+                human_win= human_win + 1
+            elif machine==1 and jugada_a=="3":
+                print("La maquina gano")
+                machine_win= machine_win +1
+            elif machine==2 and jugada_a=="1":
+                print("La maquina gano")
+                machine_win=machine_win + 1
+            elif machine==3 and jugada_a=="2":
+                print("La maquina gano")
+                machine_win=machine_win+1
+            elif jugada_a=="1" and machine==1:
+                print("Empate")
+            elif jugada_a=="2" and machine==2:
+                print("Empate")
+            elif jugada_a=="3" and machine==3:
+                print("Empate")
+            print("tu puntaje es: ", human_win, "contra", machine_win, "de la maquina")
+            if human_win==machine_win:
+              empate=True
+              print("Hubo empate")
+            else:
+              empate=False
+            partidas=partidas+1
+          if human_win>machine_win:
+              ganancia=apuesta*2#Duplica pauesta
+              total=saldo_parcial+ganancia#Te dice cuanto tenes
+              print("Ganaste y duplicas la apuesta!! Tenes en total $: ", total)
+          else:
+            saldo_inicial=saldo_parcial#si perdes,  te quedas con lo que no apostastesss
+            print("La maquina gano...Perdiste tu saldo. Todavia tenes: $", saldo_inicial)
+          pregunta=input("Queres volver a jugar?: si o no\n")
+          if pregunta=="si":
+            apuesta=int(input("Cuanto vas a apostar:\n $ "))
+            while apuesta>saldo_inicial:#Rulo a la inversa: no te deja jugar mas de lo que tenes en el bolsillo
+              apuesta=int(input("Cuanto vas a apostar:\n $ "))
+            opcion_general=input("A que juego queres jugar?:\n 1.Piedra/papel/tijera\n 2.Dados\n 3.Trivia\n 4.Salir\n Elegiste: ")
+          else:
+            print("Termino el juego")
+        if opcion_general=="2":
+          total=0
+          for i in range(3):
+            print("Se lanza el dado por", i+1, "vez")
+            dado=random.randint(1,6)
+            print("Salio el", dado)
+            total=total+dado
+          if total ==1 or total==18:
+            ganancia=apuesta*3#Triplica apuesta
+            total=saldo_parcial+ganancia#Te dice cuanto tenes
+            print("Triplicas la apuesta!! Tenes en total $: ", total)
+          elif total ==6 or total ==9 or total==12:
+            ganancia=apuesta*2#Duplica apuesta
+            total=saldo_parcial+ganancia#Te dice cuanto tenes
+            print("Duplicas la apuesta!! Tenes en total $: ", total)
+          else:
+            saldo_inicial=saldo_parcial#si perdes,  te quedas con lo que no apostastesss
+            print("Perdiste tu saldo. Todavia tenes: $", saldo_inicial)
+          pregunta=input("Queres volver a jugar?: si o no\n")
+          if pregunta=="si":
+            opcion_general=input("A que juego queres jugar?:\n 1.Piedra/papel/tijera\n 2.Dados\n 3.Trivia\n 4.Salir\n Elegiste: ")
+          else:
+            opcion_general=0#fuerzo el cierre
+            print("Termino el juego")
+        if opcion_general=="3":
+          puntaje = 0
+          print("La siguiente trivia es sobre capitales del mundo:")
+          pregunta1 = input("¿Cuál es la capital de España?: ")
+          if pregunta1 == "Madrid":
+              puntaje += 1
+              print("Bien")
+          else:
+              print("Mal")
+          pregunta2 = input("¿Cuál es la capital de Brasil?: ")
+          if pregunta2 == "Brasilia":
+              puntaje += 1
+              print("Bien")
+          else:
+              print("Mal")
+          pregunta3 = input("¿Cuál es la capital de Alemania? ")
+          if pregunta3 == "Berlin":
+              puntaje += 1
+              print("bien")
+          else:
+              print("Mal");
+          print("Respuestas correctas: ",puntaje)
+          if puntaje==3:
+              ganancia=apuesta*3#Triplica apuesta
+              total=saldo_parcial+ganancia#Te dice cuanto tenes
+              print("Triplicas la apuesta!! Tenes en total $: ", total)
+          elif puntaje==2:
+              ganancia=apuesta*2#Duplica apuesta
+              total=saldo_parcial+ganancia#Te dice cuanto tenes
+              print("Duplicas la apuesta!! Tenes en total $: ", total)
+          else:
+              saldo_inicial=saldo_parcial#si perdes,  te quedas con lo que no apostastesss
+              print("Perdiste tu saldo. Todavia tenes: $", saldo_inicial)
+          pregunta=input("Queres volver a jugar?: si o no\n")
+          if pregunta=="si":
+            opcion_general=input("A que juego queres jugar?:\n 1.Piedra/papel/tijera\n 2.Dados\n 3.Trivia\n 4.Salir\n Elegiste: ")
+          else:
+            opcion_general=0#fuerzo el cierre
+            print("Termino el juego")
+print("Te vas con...$ ", total)

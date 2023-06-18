@@ -1,0 +1,24 @@
+opcion = input("Que desea realizar ?\n 1-suma\n 2-resta\n 3-multiplicacion\n 4-division\n 5-salir\n Elegi:")
+while opcion!="salir" and opcion!="5":
+    valor_a=float(input("Ingresa el primer valor:"))
+    valor_b=float(input("Ingresa el segundo valor:"))
+    if opcion == "1":
+        suma=valor_a+valor_b
+        print("El resultado de la suma es: ", suma)
+    elif opcion == "2":
+        rest=valor_a-valor_b
+        print("El resultado de la resta es: ", rest)
+
+    elif opcion == "3":
+        mult=valor_a*valor_b
+        print("El resultado de la multiplicacion es: ", mult)
+
+    elif opcion == "4":
+        if valor_b==0:
+            print("La operacion no se puede realizar")
+
+        else:
+            divi=valor_a/valor_b
+            print("El resultado de la division es: ", divi)
+    opcion = input("Que desea realizar ?\n 1-suma\n 2-resta\n 3-multiplicacion\n 4-division\n 5-salir\n Elegi:")
+print("Final")
